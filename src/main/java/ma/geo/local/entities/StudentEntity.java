@@ -1,14 +1,12 @@
 package ma.geo.local.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 public class StudentEntity {
     @Id
     @Column(name = "id_student")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @Column(name = "name_student")
     private String name;

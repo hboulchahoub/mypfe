@@ -3,7 +3,6 @@ package ma.geo.local.services;
 import ma.geo.local.mappers.StudentMapper;
 import ma.geo.local.models.StudentDTO;
 import ma.geo.local.repositories.StudentRepository;
-import ma.geo.local.repositories.StudentRepositoryImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,25 +24,28 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Long save(StudentDTO dto) {
-        LOGGER.debug("start method save");
-        return studentRepository.save(studentMapper.studentDtoToEntity(dto));
+        LOGGER.debug("start method save dto : {} ",dto);
+        StudentDTO re = studentMapper.studentEntityToDto(studentRepository.save(studentMapper.studentDtoToEntity(dto)));
+        return re.getId();
     }
 
     @Override
     public Long update(StudentDTO dto) {
-        LOGGER.debug("start method update");
-        return studentRepository.update(studentMapper.studentDtoToEntity(dto));
+        LOGGER.debug("start method save dto : {} ",dto);
+        StudentDTO re = studentMapper.studentEntityToDto(studentRepository.save(studentMapper.studentDtoToEntity(dto)));
+        return re.getId();
     }
 
     @Override
     public Boolean delete(Long id) {
-        LOGGER.debug("start method delete");
-        return studentRepository.delete(id);
+        LOGGER.debug("start method delete id : {} ",id);
+         studentRepository.deleteById(id);
+         return true;
     }
 
     @Override
     public List<StudentDTO> selectAll() {
         LOGGER.debug("start method select All");
-        return studentMapper.studentEntiesToDtos(studentRepository.selectAll());
+        return studentMapper.studentEntiesToDtos(studentRepository.findAll());
     }
 }

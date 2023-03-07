@@ -1,9 +1,12 @@
 # Directories #
-
+*.log
+/logs/*
 /build/
 /bin/
 /target/
 /.idea/
+id1.xml
+id1.txt
 # OS Files #
 .DS_Store
  

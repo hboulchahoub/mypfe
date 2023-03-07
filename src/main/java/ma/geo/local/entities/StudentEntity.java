@@ -2,21 +2,37 @@ package ma.geo.local.entities;
 
 import javax.persistence.*;
 
+// @Embeddable @EmbeddedId
 @Entity
 public class StudentEntity {
-    @Id
-    @Column(name = "id_student")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+
+    @EmbeddedId
+    private StudentId studentId;
+
     @Column(name = "name_student")
     private String name;
 
-    public long getId() {
-        return id;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="rue",column = @Column(name = "rue_student")),
+            @AttributeOverride(name="avenue",column = @Column(name = "avenue_student"))
+    })
+    private Adresse adresse;
+
+    public Adresse getAdresse() {
+        return adresse;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
+    public StudentId getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(StudentId studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {
@@ -30,7 +46,7 @@ public class StudentEntity {
     @Override
     public String toString() {
         return "StudentEntity{" +
-                "id=" + id +
+                "studentId=" + studentId +
                 ", name='" + name + '\'' +
                 '}';
     }

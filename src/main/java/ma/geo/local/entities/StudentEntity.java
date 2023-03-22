@@ -1,8 +1,6 @@
 package ma.geo.local.entities;
 
 import javax.persistence.*;
-
-// @Embeddable @EmbeddedId
 @Entity
 public class StudentEntity {
 

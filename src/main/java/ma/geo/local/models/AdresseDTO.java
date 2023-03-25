@@ -1,9 +1,7 @@
-package ma.geo.local.entities;
+package ma.geo.local.models;
 
-import javax.persistence.Embeddable;
 
-@Embeddable
-public class Adresse {
+public class AdresseDTO {
 
     private String rue;
 
@@ -37,7 +35,7 @@ public class Adresse {
 
     @Override
     public String toString() {
-        return "Adresse{" +
+        return "AdresseDTO{" +
                 "rue='" + rue + '\'' +
                 ", avenue='" + avenue + '\'' +
                 ", number='" + number + '\'' +

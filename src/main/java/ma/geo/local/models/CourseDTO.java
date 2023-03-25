@@ -1,17 +1,8 @@
-package ma.geo.local.entities;
+package ma.geo.local.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+public class CourseDTO {
 
-@Entity
-public class CourseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-
 
     private String name;
 
@@ -33,7 +24,7 @@ public class CourseEntity {
 
     @Override
     public String toString() {
-        return "CourseEntity{" +
+        return "CourseDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

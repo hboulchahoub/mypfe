@@ -1,6 +1,7 @@
 package ma.geo.local.controllers;
 
 import ma.geo.local.models.StudentDTO;
+import ma.geo.local.models.StudentIdDTO;
 import ma.geo.local.services.StudentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,16 +34,24 @@ public class StudentController {
         return studentService.update(dto);
     }
 
-    @DeleteMapping("/{ids}")
-    public Boolean delete(@PathVariable("ids") Long id) {
-        LOGGER.debug("start method delete id : {} ",id);
-        return studentService.delete(id);
+    @DeleteMapping("/{id}/{code}")
+    public Boolean deleteById(@PathVariable("id") long id,@PathVariable("code") String code) {
+        LOGGER.debug("start method select by id {} , code {} ",id,code);
+        StudentIdDTO idcomp =new StudentIdDTO(id,code);
+        return studentService.delete(idcomp);
     }
 
     @GetMapping
     public List<StudentDTO> selectAll() {
         LOGGER.debug("start method select All");
         return studentService.selectAll();
+    }
+
+    @GetMapping("/{id}/{code}")
+    public StudentDTO selectById(@PathVariable("id") long id,@PathVariable("code") String code) {
+        LOGGER.debug("start method select by id {} , code {} ",id,code);
+        StudentIdDTO idcomp =new StudentIdDTO(id,code);
+        return studentService.selectById(idcomp);
     }
 
 }

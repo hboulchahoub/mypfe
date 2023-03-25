@@ -1,7 +1,6 @@
 package ma.geo.local.entities;
 
 import javax.persistence.*;
-
 import java.util.List;
 
 @Entity
@@ -13,33 +12,29 @@ public class StudentEntity {
     @Column(name = "name_student")
     private String name;
 
+    @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    private List<CourseEntity> courses;
+
 
     @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name="rue",column = @Column(name = "rue_student")),
-            @AttributeOverride(name="avenue",column = @Column(name = "avenue_student"))
-    })
-    private Adresse adresse;
+    private Address address;
 
-    public Adresse getAdresse() {
-        return adresse;
-    }
-    @ManyToMany
-    @JoinTable(name="list_cours_students")
-    private List<CourseEntity> coures;
-
-    public List<CourseEntity> getCoures() {
-        return coures;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCoures(List<CourseEntity> coures) {
-        this.coures = coures;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
+    public List<CourseEntity> getCourses() {
+        return courses;
     }
+
+    public void setCourses(List<CourseEntity> courses) {
+        this.courses = courses;
+    }
+
 
     public StudentId getStudentId() {
         return studentId;
@@ -62,8 +57,8 @@ public class StudentEntity {
         return "StudentEntity{" +
                 "studentId=" + studentId +
                 ", name='" + name + '\'' +
-                ", adresse=" + adresse +
-                ", coures=" + coures +
+                ", courses=" + courses +
+                ", adresse=" + address +
                 '}';
     }
 }

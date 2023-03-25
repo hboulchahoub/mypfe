@@ -3,7 +3,7 @@ package ma.geo.local.entities;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Adresse {
+public class Address {
 
     private String rue;
 
@@ -33,5 +33,14 @@ public class Adresse {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return "Adresse{" +
+                "rue='" + rue + '\'' +
+                ", avenue='" + avenue + '\'' +
+                ", number='" + number + '\'' +
+                '}';
     }
 }

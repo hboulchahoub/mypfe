@@ -1,6 +1,7 @@
 package ma.geo.local.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 // @Embeddable @EmbeddedId
 @Entity
@@ -12,12 +13,28 @@ public class StudentEntity {
     @Column(name = "name_student")
     private String name;
 
+    @ManyToMany(cascade = {CascadeType.MERGE,
+            CascadeType.PERSIST,
+    },fetch = FetchType.EAGER
+    )
+    @JoinTable(name = "tab_list_course")
+    private List<CourseEntity> courses;
+
+
     @Embedded
     @AttributeOverrides({
             @AttributeOverride(name="rue",column = @Column(name = "rue_student")),
             @AttributeOverride(name="avenue",column = @Column(name = "avenue_student"))
     })
     private Adresse adresse;
+
+    public List<CourseEntity> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<CourseEntity> courses) {
+        this.courses = courses;
+    }
 
     public Adresse getAdresse() {
         return adresse;
@@ -43,11 +60,6 @@ public class StudentEntity {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "StudentEntity{" +
-                "studentId=" + studentId +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }
+
+

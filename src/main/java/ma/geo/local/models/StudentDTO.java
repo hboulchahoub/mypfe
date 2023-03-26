@@ -1,15 +1,20 @@
 package ma.geo.local.models;
 
-public class StudentDTO {
-    private Long id;
-    private String name;
+import java.util.List;
 
-    public Long getId() {
-        return id;
+public class StudentDTO {
+
+    private StudentIdDTO studentId;
+    private String name;
+    private List<CourseDTO> courses;
+    private AdresseDTO adresse;
+
+    public StudentIdDTO getStudentId() {
+        return studentId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setStudentId(StudentIdDTO studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {
@@ -20,11 +25,29 @@ public class StudentDTO {
         this.name = name;
     }
 
+    public List<CourseDTO> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<CourseDTO> courses) {
+        this.courses = courses;
+    }
+
+    public AdresseDTO getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(AdresseDTO adresse) {
+        this.adresse = adresse;
+    }
+
     @Override
     public String toString() {
         return "StudentDTO{" +
-                "id=" + id +
+                "studentId=" + studentId +
                 ", name='" + name + '\'' +
+                ", courses=" + courses +
+                ", adresse=" + adresse +
                 '}';
     }
 }

@@ -5,7 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import java.net.InetAddress;
@@ -24,11 +27,14 @@ public class PFEApplication {
         LOGGER.info("Access URLs:\n----------------------------------------------------------\n\t" +
                         "Local: \t\thttp://127.0.0.1:{}/swagger-ui/#/\n\t" +
                         "External: \thttp://{}:{}/swagger-ui/#/\n----------------------------------------------------------",
-
                 env.getProperty("server.port"),
                 InetAddress.getLocalHost().getHostAddress(),
                 env.getProperty("server.port")
         );
+    }
 
+    @Bean
+    public PasswordEncoder getEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }

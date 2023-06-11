@@ -17,3 +17,6 @@ logging:
     org.springframework.web: debug
     ma.geo.local: DEBUG
     org.hibernate: ERROR
+
+jwt:
+  secret: SSLDSLD334534
